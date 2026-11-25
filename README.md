@@ -226,7 +226,8 @@ B.E. Computer Science and Engineering Graduate
 Currently pursuing M.Tech in Artificial Intelligence at REVA University.
 
 - GitHub: [@OwaisGit12](https://github.com/OwaisGit12)
-- LinkedIn: [Connect with me](https://www.linkedin.com/)
+- LinkedIn: [Connect with me](https://www.linkedin.com/in/syedowaisahmed)
+
 
 ## ⭐ Support
 
