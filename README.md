@@ -180,7 +180,15 @@ http://127.0.0.1:5000/
 
 Screenshots of the working application will be added here.
 
-<!-- Add screenshots after uploading them to the repository -->
+Home Page
+<img width="946" height="486" alt="image" src="https://github.com/user-attachments/assets/3d5d54d0-1873-4741-8d36-dbaef2f06e88" />
+
+Safe Website
+<img width="983" height="547" alt="image" src="https://github.com/user-attachments/assets/3ded130f-75c5-47ed-aa18-f70430664f1a" />
+
+Unsafe Website
+<img width="983" height="592" alt="image" src="https://github.com/user-attachments/assets/92d1f1ab-41db-40b6-a16e-cca222239bfb" />
+
 
 ## 📚 Learning Outcomes
 
