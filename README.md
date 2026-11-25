@@ -1,53 +1,265 @@
-# Phishing Website Detection by Machine Learning Techniques
+🛡️ Phishing Website Detection Using Machine Learning
 
-## Objective
-A phishing website is a common social engineering method that mimics trustful uniform resource locators (URLs) and webpages. The objective of this project is to train machine learning models and deep neural nets on the dataset created to predict phishing websites. Both phishing and benign URLs of websites are gathered to form a dataset and from them required URL and website content-based features are extracted. The performance level of each model is measures and compared.
+<p align="center">
+  <b>A Machine Learning-Based Web Application for Detecting Phishing Websites</b>
+</p>
 
-## Data Collection
-The set of phishing URLs are collected from opensource service called **PhishTank**. This service provide a set of phishing URLs in multiple formats like csv, json etc. that gets updated hourly. To download the data: https://www.phishtank.com/developer_info.php. From this dataset, 5000 random phishing URLs are collected to train the ML models.
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.x-blue?logo=python" />
+  <img src="https://img.shields.io/badge/Flask-Web%20Framework-black?logo=flask" />
+  <img src="https://img.shields.io/badge/Machine-Learning-orange" />
+  <img src="https://img.shields.io/badge/Status-Completed-success" />
+</p>
 
-The legitimate URLs are obatined from the open datasets of the University of New Brunswick, https://www.unb.ca/cic/datasets/url-2016.html. This dataset has a collection of benign, spam, phishing, malware & defacement URLs. Out of all these types, the benign url dataset is considered for this project. From this dataset, 5000 random legitimate URLs are collected to train the ML models.
+📌 Project Overview
 
-The above mentioned datasets are uploaded to the '[DataFiles](https://github.com/shreyagopal/Phishing-Website-Detection-by-Machine-Learning-Techniques/tree/master/DataFiles)' folder of this repository.
+Phishing attacks are one of the most common cybersecurity threats on the internet. Attackers create fraudulent websites that imitate legitimate platforms to steal sensitive information such as usernames, passwords, and financial details.
 
-## Feature Extraction
-The below mentioned category of features are extracted from the URL data:
+This project aims to identify potentially malicious websites using Machine Learning techniques.
 
-1.   Address Bar based Features <br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In this category 9 features are extracted.
-2.   Domain based Features<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In this category 4 features are extracted.
-3.   HTML & Javascript based Features<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In this category 4 features are extracted.
+The application analyzes URL-related features and uses a trained classification model to predict whether a website is Phishing or Legitimate.
 
-*The details pertaining to these features are mentioned in the [URL Feature Extraction.ipynb.](https://github.com/shreyagopal/Phishing-Website-Detection-by-Machine-Learning-Techniques/blob/master/URL%20Feature%20Extraction.ipynb)[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shreyagopal/Phishing-Website-Detection-by-Machine-Learning-Techniques/blob/master/URL%20Feature%20Extraction.ipynb)*
+The project combines Machine Learning with Flask to provide a web-based interface for phishing website detection.
 
-So, all together 17 features are extracted from the 10,000 URL dataset and are stored in '[5.urldata.csv](https://github.com/shreyagopal/Phishing-Website-Detection-by-Machine-Learning-Techniques/blob/master/DataFiles/5.urldata.csv)' file in the DataFiles folder.<br>
-The features are referenced from the https://archive.ics.uci.edu/ml/datasets/Phishing+Websites.
+🎯 Problem Statement
 
-## Models & Training
+With the increasing number of phishing attacks, identifying malicious websites has become an important cybersecurity challenge.
 
-Before stating the ML model training, the data is split into 80-20 i.e., 8000 training samples & 2000 testing samples. From the dataset, it is clear that this is a supervised machine learning task. There are two major types of supervised machine learning problems, called classification and regression.
+Traditional detection methods may struggle to identify newly created phishing URLs.
 
-This data set comes under classification problem, as the input URL is classified as phishing (1) or legitimate (0). The supervised machine learning models (classification) considered to train the dataset in this project are:
+This project explores Machine Learning techniques to classify website URLs based on extracted features and identify potentially fraudulent websites.
 
-* Decision Tree
-* Random Forest
-* Multilayer Perceptrons
-* XGBoost
-* Autoencoder Neural Network
-* Support Vector Machines
+✨ Key Features
 
-All these models are trained on the dataset and evaluation of the model is done with the test dataset. The elaborate details of the models & its training are mentioned in [Phishing Website Detection_Models & Training.ipynb](https://github.com/shreyagopal/Phishing-Website-Detection-by-Machine-Learning-Techniques/blob/master/Phishing%20Website%20Detection_Models%20%26%20Training.ipynb)[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shreyagopal/Phishing-Website-Detection-by-Machine-Learning-Techniques/blob/master/Phishing%20Website%20Detection_Models%20%26%20Training.ipynb)
+Phishing and legitimate website classification.
 
-## Presentation
+URL feature extraction.
 
-The short video presentaion for this project is @ https://youtu.be/I1refTZp-pg. <br>
-The slide presentaion used in this video is [Phishing Website Detection by Machine Learning Techniques Presentation.pdf](https://github.com/shreyagopal/Phishing-Website-Detection-by-Machine-Learning-Techniques/blob/master/Phishing%20Website%20Detection%20by%20Machine%20Learning%20Techniques%20Presentation.pdf)
+Machine Learning-based prediction.
 
-## End Results
-From the obtained results of the above models, XGBoost Classifier has highest model performance of 86.4%. So the model is saved to the file '[XGBoostClassifier.pickle.dat](https://github.com/shreyagopal/Phishing-Website-Detection-by-Machine-Learning-Techniques/blob/master/XGBoostClassifier.pickle.dat)'
+Flask-based web application.
 
-### Next Steps
+Trained Machine Learning models.
 
-This project can be further extended to creation of browser extention or developed a GUI which takes the URL and predicts it's nature i.e., legitimate of phishing. *As of now, I am working towards the creation of browser extention for this project. And may even try the GUI option also.* The further developments will be updated at the earliest. 
+Dataset analysis and model evaluation.
+
+Jupyter notebooks for experimentation and training.
+
+🧰 Technology Stack
+
+Technology
+
+Purpose
+
+Python
+
+Core programming language
+
+Flask
+
+Web application framework
+
+Pandas
+
+Data manipulation
+
+Scikit-learn
+
+Machine Learning
+
+XGBoost
+
+Classification algorithm
+
+Jupyter Notebook
+
+Model development and experimentation
+
+HTML
+
+Web interface
+
+CSS
+
+Interface styling
+
+JavaScript
+
+Frontend functionality
+
+🧠 Machine Learning Approach
+
+This project uses supervised Machine Learning classification techniques.
+
+Dataset
+
+The dataset consists of:
+
+5,000 phishing URLs.
+
+5,000 legitimate URLs.
+
+10,000 total URL records.
+
+The original project documentation identifies PhishTank and the University of New Brunswick's URL dataset as data sources.
+
+Algorithms Explored
+
+The following algorithms were investigated:
+
+Decision Tree
+
+Random Forest
+
+Multilayer Perceptron (MLP)
+
+XGBoost
+
+Autoencoder Neural Network
+
+Support Vector Machine (SVM)
+
+Feature Extraction
+
+A total of 17 URL and website-related features were explored during model development.
+
+These features belong to three major categories:
+
+Address Bar-Based Features
+
+Domain-Based Features
+
+HTML and JavaScript-Based Features
+
+Model Performance
+
+According to the original project experiments, the XGBoost Classifier achieved the highest reported performance of 86.4%.
+
+The trained models are included in the repository.
+
+Note: This is the result reported in the original project experiments, not a guarantee of real-world detection accuracy.
+
+🏗️ Project Structure
+
+Phishing-Website-Detection/
+│
+├── DataFiles/
+│   └── Dataset files
+│
+├── static/
+│   └── images/
+│
+├── templates/
+│   └── HTML templates
+│
+├── app.py
+├── URLFeatureExtraction.py
+├── model.pkl
+├── XGBoostClassifier.pickle.dat
+│
+├── Phishing Website Detection_Models & Training.ipynb
+├── URL Feature Extraction.ipynb
+│
+├── inspect_model.py
+├── start.bat
+├── start_admin.bat
+│
+├── README.md
+└── requirements.txt
+
+⚙️ Installation and Setup
+
+Follow these steps to run the project locally.
+
+1. Clone the Repository
+
+git clone https://github.com/OwaisGit12/Phishing-Website-Detection-Using-Machine-Learning.git
+
+2. Navigate to the Project Directory
+
+cd Phishing-Website-Detection-Using-Machine-Learning
+
+3. Create a Virtual Environment
+
+python -m venv venv
+
+4. Activate the Virtual Environment
+
+Windows:
+
+venv\Scripts\activate
+
+5. Install Dependencies
+
+pip install -r requirements.txt
+
+6. Run the Application
+
+python app.py
+
+7. Open in Browser
+
+Visit:
+
+http://127.0.0.1:5000/
+
+📸 Application Screenshots
+
+Screenshots of the working application will be added here.
+
+<!-- Add screenshots after uploading them to the repository -->
+
+📚 Learning Outcomes
+
+Through this project, I gained practical exposure to:
+
+Machine Learning classification techniques.
+
+Data preprocessing and feature extraction.
+
+Training and evaluating classification models.
+
+Integrating Machine Learning models with Flask.
+
+Developing Python-based web applications.
+
+Understanding phishing attacks and cybersecurity concepts.
+
+🚀 Future Enhancements
+
+Potential improvements include:
+
+Integrating real-time threat intelligence feeds.
+
+Improving URL feature extraction.
+
+Evaluating additional Machine Learning models.
+
+Developing a browser extension.
+
+Improving model accuracy and generalization.
+
+Deploying the application to a secure cloud environment.
+
+⚠️ Disclaimer
+
+This project is developed for educational and research purposes.
+
+Machine Learning predictions are not guaranteed to identify every phishing website. Users should not rely solely on this application for cybersecurity decisions.
+
+👨‍💻 Author
+
+Syed Owais Ahmed
+
+B.E. Computer Science and Engineering Graduate
+Currently pursuing M.Tech in Artificial Intelligence at REVA University.
+
+GitHub: @OwaisGit12
+
+LinkedIn: Connect with me
+
+⭐ Support
+
+If you find this project interesting, consider giving this repository a star!
+
+Your support is appreciated.
