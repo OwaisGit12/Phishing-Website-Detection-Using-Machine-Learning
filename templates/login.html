@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Login — Phishing Detector</title>
+<style>
+  body{background:linear-gradient(120deg,#071029,#0f2138);font-family:Poppins,Inter;color:#e8f7ff;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;}
+  .container{width:360px;padding:28px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));box-shadow:0 12px 40px rgba(2,6,23,0.6);}
+  input{width:94%;padding:12px;margin:8px 0;border-radius:10px;border:none;background:rgba(255,255,255,0.03);color:#e8f7ff;outline:none;}
+  .btn{width:96%;padding:12px;border-radius:999px;background:linear-gradient(90deg,#00c3ff,#5fe0ff);border:none;color:#022;font-weight:700;cursor:pointer;}
+  .row{display:flex;align-items:center;justify-content:space-between;margin-top:6px;}
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>Sign in</h2>
+  <form action="/do_login" method="post" autocomplete="on">
+    <input type="text" name="username" placeholder="Username" required />
+    <input type="password" name="password" placeholder="Password" required />
+    <div style="display:flex;gap:8px;align-items:center">
+      <input type="checkbox" id="remember" name="remember" />
+      <label for="remember">Remember me (7 days)</label>
+    </div>
+
+    <div style="margin-top:8px;">
+      <label style="display:inline-block;margin-right:8px">{{ captcha_question }}</label>
+      <input style="width:34%;display:inline-block;padding:8px" type="text" name="captcha" placeholder="Answer" required />
+    </div>
+
+    <button class="btn" type="submit">Sign in</button>
+  </form>
+
+  <div class="row">
+    <small>Don't have account? <a href="/register" style="color:#5fe0ff;">Register</a></small>
+    <small><a href="/request_reset" style="color:#5fe0ff;">Forgot?</a></small>
+  </div>
+</div>
+</body>
+</html>

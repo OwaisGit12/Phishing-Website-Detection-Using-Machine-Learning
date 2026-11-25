@@ -1,0 +1,464 @@
+{
+  "owais": "scrypt:32768:8:1$HyTktklXjVazVwdm$b174bcc24c239fb5991ae9db13dfb5dff0d1d8019d5a30f896916a8d91499e949b362c62fc262e43063d108672ac3de04f1aab7878a1012533cb717bff65ea5d",
+  "awais": {
+    "password": "scrypt:32768:8:1$9epX5PaF0XzJvYTd$62dcd99230714bae0f7dca1aaee7dab58397ebbaab2e6db3ee86b7bb86df0c91e0738bf9d214867b741dc18e29b7f4a148d89226bd55de17b23ff60372c68b8e",
+    "email": "owaisa1206@gmail.com",
+    "verified": false,
+    "verify_token": "4c8af379-1bdd-4521-bedb-7c9967871812",
+    "reset_token": null,
+    "reset_expiry": null,
+    "scans": []
+  },
+  "zoheb": {
+    "password": "scrypt:32768:8:1$rh3YBfq2tou3dnZp$05cc818c51a7232cd212e4b61e349892f4c416d2e440199776aa899f2871b34c39fab4043bc32538d749df27c4e155b4ef6249668b74a15ee69f1fcfca2794e2",
+    "email": "",
+    "verified": true,
+    "verify_token": null,
+    "reset_token": null,
+    "reset_expiry": null,
+    "scans": [
+      {
+        "id": "f638d528-c9db-4c8e-982b-d73bb6414b26",
+        "url": "http://login-verify-account.top/",
+        "result": "Phishing",
+        "timestamp": "2025-12-23T10:20:44.553502Z"
+      },
+      {
+        "id": "037723a6-9cdd-4752-a2e5-7745f0ae960d",
+        "url": "www.google.com",
+        "result": "Legitimate",
+        "timestamp": "2025-12-23T10:20:01.661986Z"
+      },
+      {
+        "id": "c3cf08be-f60b-4b5b-b70c-206b8db2c63e",
+        "url": "https://www.google.com",
+        "result": "Phishing",
+        "timestamp": "2025-12-23T10:19:51.005162Z"
+      },
+      {
+        "id": "8f67bd09-8cd0-4e2c-93bd-3bee690608d3",
+        "url": "docs.google.com",
+        "result": "Legitimate",
+        "timestamp": "2025-12-20T15:17:11.127267Z"
+      },
+      {
+        "id": "bee76ff9-f857-4a4a-a87f-40118c3bd9b2",
+        "url": "https://www.docs.google.com",
+        "result": "Phishing",
+        "timestamp": "2025-12-20T15:17:02.217379Z"
+      },
+      {
+        "id": "fc7223d4-58f9-466c-9f24-ed0d0a568f06",
+        "url": "https://docs.google.com",
+        "result": "Phishing",
+        "timestamp": "2025-12-20T15:16:56.996293Z"
+      },
+      {
+        "id": "9673eda8-8334-427d-a79f-cd9468e95309",
+        "url": "docs.google.com",
+        "result": "Legitimate",
+        "timestamp": "2025-12-20T15:16:50.087722Z"
+      },
+      {
+        "id": "d2848345-86a5-4966-961d-456cca93d2d4",
+        "url": "https://www.instagram.com/",
+        "result": "Legitimate",
+        "timestamp": "2025-12-04T06:56:15.339690Z"
+      },
+      {
+        "id": "2792d760-2aa2-4a37-b1cb-ad270f51ddfe",
+        "url": "https://www.instaflow.com",
+        "result": "Phishing",
+        "timestamp": "2025-12-04T06:55:23.281075Z"
+      },
+      {
+        "id": "d3ec2678-c4bb-4761-9af4-bdfa35f53e0a",
+        "url": "https://www.instagram.com/",
+        "result": "Legitimate",
+        "timestamp": "2025-12-04T06:55:03.502572Z"
+      },
+      {
+        "id": "6a5ffda6-de01-48bb-8265-3a2f3e65e272",
+        "url": "https://www.instaflow.com",
+        "result": "Phishing",
+        "timestamp": "2025-12-04T06:38:14.339497Z"
+      },
+      {
+        "id": "fc03f285-01cc-48eb-9e29-9365a18ec8c9",
+        "url": "https://www.instagram.com/",
+        "result": "Legitimate",
+        "timestamp": "2025-12-04T06:38:05.233446Z"
+      },
+      {
+        "id": "5ea9d409-a0de-4c61-95c0-14a8550f44c8",
+        "url": "https://www.instagram.com",
+        "result": "Phishing",
+        "timestamp": "2025-12-04T06:37:59.853924Z"
+      },
+      {
+        "id": "7af7c52a-d960-4e02-83d8-9dca7e9c74d2",
+        "url": "https://wwww.instagram.com",
+        "result": "Phishing",
+        "timestamp": "2025-12-03T14:39:55.318281Z"
+      },
+      {
+        "id": "c0a07695-2d42-4175-99fc-0a58f3afd9e3",
+        "url": "https://www.instagram.com",
+        "result": "Phishing",
+        "timestamp": "2025-12-03T14:39:19.309038Z"
+      },
+      {
+        "id": "a0cda61f-a209-4e61-baee-40643d1302c3",
+        "url": "www.instagram.com",
+        "result": "Legitimate",
+        "timestamp": "2025-12-03T14:39:05.507873Z"
+      },
+      {
+        "id": "e0db58f9-f201-4235-b886-ff8cdb627d54",
+        "url": "wwww.instagram.com",
+        "result": "Legitimate",
+        "timestamp": "2025-12-03T14:38:52.468155Z"
+      },
+      {
+        "id": "86daf2e2-b80c-41b5-b3d6-fde948186da6",
+        "url": "https://indianexpress.com/",
+        "result": "Legitimate",
+        "timestamp": "2025-12-03T14:18:00.696292Z"
+      },
+      {
+        "id": "983b7af2-e2bf-4bbe-a9b6-53552620dc59",
+        "url": "https://indianexpress.com",
+        "result": "Phishing",
+        "timestamp": "2025-12-03T14:17:56.797855Z"
+      },
+      {
+        "id": "a1dd75b2-8fd3-4b6e-ac74-54fa22c08177",
+        "url": "https://indianexpress.com/",
+        "result": "Legitimate",
+        "timestamp": "2025-12-03T14:17:53.993028Z"
+      },
+      {
+        "id": "0d4f34ad-e1e6-435a-ba99-2387e920d58a",
+        "url": "https://indianexpress.com/interstitial",
+        "result": "Legitimate",
+        "timestamp": "2025-12-03T14:17:48.684438Z"
+      },
+      {
+        "id": "acd4f895-ca48-4977-a42d-4ebbd6d46e38",
+        "url": "https://indianexpress.com/interstitial/",
+        "result": "Legitimate",
+        "timestamp": "2025-12-03T14:17:46.022222Z"
+      },
+      {
+        "id": "c579d089-5936-4c41-85ba-241f90b64589",
+        "url": "https://timesofindia.indiatimes.com/",
+        "result": "Legitimate",
+        "timestamp": "2025-12-03T14:17:19.763304Z"
+      },
+      {
+        "id": "c53937bb-dae8-4e41-a419-eb11efcdc390",
+        "url": "https://timesofindia.indiatimes.com",
+        "result": "Phishing",
+        "timestamp": "2025-12-03T14:17:11.252944Z"
+      },
+      {
+        "id": "609618d9-3f96-4929-aeab-1ec4a23bc39e",
+        "url": "https://timesofindia.indiatimes.com/",
+        "result": "Legitimate",
+        "timestamp": "2025-12-03T14:17:07.658117Z"
+      },
+      {
+        "id": "f2d15ecb-3996-4604-9b01-701b0bd9edf4",
+        "url": "indianexpress.com",
+        "result": "Legitimate",
+        "timestamp": "2025-12-03T14:16:22.370876Z"
+      },
+      {
+        "id": "e44bf6f2-bcc3-496f-8eac-c4f6031c62c5",
+        "url": "https://indianexpress.com",
+        "result": "Phishing",
+        "timestamp": "2025-12-03T14:16:14.613673Z"
+      },
+      {
+        "id": "5d554693-698c-4ef2-82fb-b4dace79b9c7",
+        "url": "https://everythingmoe.com/s/animekai",
+        "result": "Legitimate",
+        "timestamp": "2025-12-01T15:15:55.128472Z"
+      },
+      {
+        "id": "d194bc49-d797-4851-a9ae-263309c5768c",
+        "url": "https://hianimes.pro",
+        "result": "Phishing",
+        "timestamp": "2025-12-01T15:14:32.749887Z"
+      },
+      {
+        "id": "16800d96-eece-4814-91cc-60bf870119af",
+        "url": "https://4kwallpapers.com/anime/",
+        "result": "Phishing",
+        "timestamp": "2025-12-01T15:14:21.681921Z"
+      },
+      {
+        "id": "05ab1e54-7346-4468-80df-6aa49ca19246",
+        "url": "https://4kwallpapers.com/anime/",
+        "result": "Phishing",
+        "timestamp": "2025-12-01T15:08:41.808963Z"
+      },
+      {
+        "id": "ff788793-d1ec-4bfe-aa66-90f7867c0b32",
+        "url": "https://4kwallpapers.com/anime",
+        "result": "Phishing",
+        "timestamp": "2025-12-01T15:08:38.864990Z"
+      },
+      {
+        "id": "6df698b0-cc0b-4edb-b692-53f42c4b8c30",
+        "url": "https://4kwallpapers.com/anime/",
+        "result": "Phishing",
+        "timestamp": "2025-12-01T15:08:34.319766Z"
+      },
+      {
+        "id": "bc1f5ec9-242e-476c-8b0c-ebf945082003",
+        "url": "www.instagram.com",
+        "result": "Legitimate",
+        "timestamp": "2025-12-01T15:08:07.468291Z"
+      },
+      {
+        "id": "84251d68-4b1a-4534-bb1d-3b9984473cf3",
+        "url": "www.instagram.com/",
+        "result": "Legitimate",
+        "timestamp": "2025-12-01T15:08:04.330979Z"
+      },
+      {
+        "id": "0b0b5075-f3b7-4491-b309-b44125965e1d",
+        "url": "https://www.instagram.com/",
+        "result": "Legitimate",
+        "timestamp": "2025-12-01T15:07:53.814049Z"
+      },
+      {
+        "id": "daf61ecb-aeaf-462d-9c55-7a79f9a95506",
+        "url": "https://www.instagram.com",
+        "result": "Phishing",
+        "timestamp": "2025-12-01T15:07:50.267959Z"
+      },
+      {
+        "id": "f97d3ac6-3096-4536-bc86-810764ce51de",
+        "url": "https://www.instagram.com/",
+        "result": "Legitimate",
+        "timestamp": "2025-12-01T15:07:47.005073Z"
+      },
+      {
+        "id": "8d527cee-7ce1-4fe0-b315-c3b6f384f575",
+        "url": "https://www.instagram.com/signup",
+        "result": "Legitimate",
+        "timestamp": "2025-12-01T15:07:42.838904Z"
+      },
+      {
+        "id": "f5a99008-a69d-4351-9872-18b6873900ae",
+        "url": "https://www.instagram.com/login",
+        "result": "Legitimate",
+        "timestamp": "2025-12-01T15:07:31.784912Z"
+      },
+      {
+        "id": "bb6e4bc6-76ae-45d8-9d3d-194cf17530e8",
+        "url": "www.twitter.com",
+        "result": "Legitimate",
+        "timestamp": "2025-12-01T15:07:08.481338Z"
+      },
+      {
+        "id": "7ec9149e-2591-4800-b785-04d90b8328f4",
+        "url": "https://www.twitter.com",
+        "result": "Phishing",
+        "timestamp": "2025-12-01T15:07:02.481358Z"
+      },
+      {
+        "id": "f6befbf4-62c1-4461-b4bc-27e14150e5ec",
+        "url": "https://www.google.com",
+        "result": "Phishing",
+        "timestamp": "2025-11-27T06:32:13.228315Z"
+      },
+      {
+        "id": "f50cb63d-a6c3-4b5c-9d96-7c9e6cda7b4a",
+        "url": "www.instagram.com",
+        "result": "Legitimate",
+        "timestamp": "2025-11-27T06:31:49.199497Z"
+      },
+      {
+        "id": "8f5416e5-34b3-41c2-9eaa-bdeca8ca449a",
+        "url": "www.instagram.com",
+        "result": "Legitimate",
+        "timestamp": "2025-11-27T06:18:20.704690Z"
+      },
+      {
+        "id": "1c52d3ad-0efc-4da1-9218-c0c2b9d854c4",
+        "url": "www.owais.com",
+        "result": "Legitimate",
+        "timestamp": "2025-11-27T06:17:54.445061Z"
+      },
+      {
+        "id": "8fe92606-ece5-44fd-ab4c-cac3ea000a5f",
+        "url": "https://www.owais.com",
+        "result": "Phishing",
+        "timestamp": "2025-11-27T06:17:49.164654Z"
+      },
+      {
+        "id": "2f690a96-3bd2-4659-8997-11fed751af6b",
+        "url": "https://www.youtube.com",
+        "result": "Phishing",
+        "timestamp": "2025-11-27T06:17:30.369029Z"
+      },
+      {
+        "id": "dd0d9341-0512-49e6-857f-7f892b038fea",
+        "url": "www.youtube.com",
+        "result": "Legitimate",
+        "timestamp": "2025-11-27T06:17:22.351372Z"
+      },
+      {
+        "id": "6ef02ca4-685e-46e5-a51c-fc243fd43123",
+        "url": "www.instagram.com",
+        "result": "Legitimate",
+        "timestamp": "2025-11-27T06:16:05.779768Z"
+      },
+      {
+        "id": "83a3d64c-72bc-470f-aa0b-b66100813b43",
+        "url": "https://www.instagram.com",
+        "result": "Phishing",
+        "timestamp": "2025-11-27T06:15:57.037166Z"
+      },
+      {
+        "id": "58865e2d-aed6-4568-b227-f7793353592c",
+        "url": "https://www.google.com",
+        "result": "Phishing",
+        "timestamp": "2025-11-26T10:53:49.678484Z"
+      },
+      {
+        "id": "cedffe10-6675-47b0-9b59-73ede7987ff8",
+        "url": "www.google.com",
+        "result": "Legitimate",
+        "timestamp": "2025-11-26T10:53:40.359291Z"
+      },
+      {
+        "id": "62ab5eec-24ab-4488-b5da-5073727f44e5",
+        "url": "www.instagram.com",
+        "result": "Legitimate",
+        "timestamp": "2025-11-26T10:33:40.879997Z"
+      },
+      {
+        "id": "fd4c7e0b-401c-475f-b769-db4a788e5e40",
+        "url": "www.instagram.com",
+        "result": "Legitimate",
+        "timestamp": "2025-11-26T10:17:55.452921Z"
+      },
+      {
+        "id": "ed10f7aa-cafb-4e63-90c2-d504e8affcb5",
+        "url": "www.instagram.com",
+        "result": "Legitimate",
+        "timestamp": "2025-11-26T10:17:54.625669Z"
+      },
+      {
+        "id": "2aff898e-dba7-457a-b7de-ea8e59638c76",
+        "url": "https://www.instagram.com",
+        "result": "Phishing",
+        "timestamp": "2025-11-26T10:17:34.896497Z"
+      },
+      {
+        "id": "fb27c3d6-28c2-4568-9a4e-0d82d9f77f0b",
+        "url": "www.navodaya.edu.in",
+        "result": "Legitimate",
+        "timestamp": "2025-11-26T10:17:24.635015Z"
+      },
+      {
+        "id": "9c89b7f3-7d1f-4e35-b766-b41640a6426b",
+        "url": "www.instagram.com",
+        "result": "Legitimate",
+        "timestamp": "2025-11-26T10:17:16.537356Z"
+      }
+    ]
+  },
+  "phish": {
+    "password": "scrypt:32768:8:1$37De9Gr7eCQmoZaO$ce1f3a5252b20c143f55e40d5ab85785536dbcdd1731e40124ae1a5497d292dcc1500a979c8355221ef9bb0b8620348fbf34834741f8b321a97b32734e432f03",
+    "email": "",
+    "verified": true,
+    "verify_token": null,
+    "reset_token": null,
+    "reset_expiry": null,
+    "scans": [
+      {
+        "id": "95a43785-3804-48e6-af1b-97697b8150b5",
+        "url": "owais",
+        "result": "Legitimate",
+        "timestamp": "2026-03-07T10:52:53.328409Z"
+      },
+      {
+        "id": "78ee1f3a-b57b-4d31-866f-0e5cad52582a",
+        "url": "https://www.google.com",
+        "result": "Phishing",
+        "timestamp": "2026-03-07T10:52:25.653116Z"
+      },
+      {
+        "id": "34184a24-20f6-4780-9286-a7f1fbbbae28",
+        "url": "www.google.com",
+        "result": "Legitimate",
+        "timestamp": "2026-03-07T10:52:18.629275Z"
+      },
+      {
+        "id": "2532de6c-5c83-46b7-bd54-2d375bc0ff29",
+        "url": "www.google.com",
+        "result": "Legitimate",
+        "timestamp": "2026-03-07T10:51:37.699475Z"
+      },
+      {
+        "id": "1e4a2177-53ad-4796-b8f3-041edba8e4cd",
+        "url": "https://www.google.com",
+        "result": "Phishing",
+        "timestamp": "2026-03-07T10:51:32.102727Z"
+      },
+      {
+        "id": "9bdbae22-9987-48af-9e95-e3d36f7b2558",
+        "url": "www.instagram.com",
+        "result": "Legitimate",
+        "timestamp": "2026-01-09T06:35:27.519189Z"
+      },
+      {
+        "id": "fb0375c0-39e0-41b9-b3f9-51df8f99c378",
+        "url": "https://www.instaflow.com",
+        "result": "Phishing",
+        "timestamp": "2026-01-09T06:34:27.103923Z"
+      },
+      {
+        "id": "094e81fe-e77f-4e5d-9878-efb02f5439d7",
+        "url": "https://www.ucbrowser.com",
+        "result": "Phishing",
+        "timestamp": "2026-01-09T06:27:37.297631Z"
+      },
+      {
+        "id": "831c8feb-0236-4399-93c0-515b73558fea",
+        "url": "https://www.google.com",
+        "result": "Phishing",
+        "timestamp": "2026-01-09T06:27:08.116656Z"
+      },
+      {
+        "id": "797467f9-3546-44c0-a1ce-a6e9dab31e55",
+        "url": "www.google.com",
+        "result": "Legitimate",
+        "timestamp": "2026-01-09T06:25:13.071314Z"
+      },
+      {
+        "id": "344e79e9-b61e-4201-b3d0-f543b992aa5a",
+        "url": "https://www.google.com",
+        "result": "Phishing",
+        "timestamp": "2026-01-09T06:25:06.841756Z"
+      },
+      {
+        "id": "47982d12-212e-4c6c-b7b4-ff07b763b2e3",
+        "url": "www.youtube.com",
+        "result": "Legitimate",
+        "timestamp": "2026-01-08T17:36:05.447431Z"
+      },
+      {
+        "id": "9b28b569-500e-4ed3-89af-6b1922857cc9",
+        "url": "https://www.youtube.com",
+        "result": "Phishing",
+        "timestamp": "2026-01-08T17:35:56.249830Z"
+      }
+    ]
+  }
+}

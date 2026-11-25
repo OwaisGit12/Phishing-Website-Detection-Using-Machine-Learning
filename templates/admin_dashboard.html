@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/></head>
+<body style="font-family:Poppins,Inter;background:linear-gradient(180deg,#030617,#071a2a);color:#e8f7ff;padding:28px">
+  <div style="max-width:1100px;margin:0 auto">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <h2>Admin Dashboard</h2>
+      <a href="/admin/logout" style="color:#ff8a8a">Logout</a>
+    </div>
+
+    <p style="color:rgba(255,255,255,0.7)">Users and their scans — you can delete single scans or clear an entire user's history.</p>
+
+    {% for uname, data in users.items() %}
+      <div style="background:rgba(255,255,255,0.02);padding:12px;border-radius:8px;margin-bottom:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div><strong>{{ uname }}</strong> — {{ data.email if data.email else 'no-email' }} {% if data.verified %}(verified){% endif %}</div>
+          <div>
+            <button onclick="clearUser('{{ uname }}')" style="background:#ff8a8a;border:none;padding:8px 10px;border-radius:8px;color:white;cursor:pointer">Clear All Scans</button>
+          </div>
+        </div>
+
+        <div style="margin-top:10px">
+          {% if data.scans %}
+            {% for s in data.scans %}
+              <div style="display:flex;justify-content:space-between;background:rgba(0,0,0,0.2);padding:8px;border-radius:6px;margin-top:8px">
+                <div>
+                  <div style="font-weight:700">{{ s.url }}</div>
+                  <div style="font-size:12px;color:rgba(255,255,255,0.7)">{{ s.timestamp }} • {{ s.result }}</div>
+                </div>
+                <div>
+                  <button onclick="deleteUserScan('{{ uname }}','{{ s.id }}')" style="background:#ff6b6b;border:none;padding:8px 10px;border-radius:8px;color:white;cursor:pointer">Delete</button>
+                </div>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div style="color:rgba(255,255,255,0.7);margin-top:8px">No scans</div>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+<script>
+async function deleteUserScan(username, scanId){
+  if(!confirm('Delete scan for ' + username + '?')) return;
+  try {
+    const resp = await fetch('/admin/delete_scan', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({username, scan_id: scanId})});
+    const data = await resp.json();
+    if(data.ok) location.reload();
+    else alert(data.error || 'Error');
+  } catch (err){ alert(err.message); }
+}
+
+async function clearUser(username){
+  if(!confirm('Clear all scans for ' + username + '?')) return;
+  try {
+    const resp = await fetch('/admin/clear_user_scans', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({username})});
+    const data = await resp.json();
+    if(data.ok) location.reload();
+    else alert(data.error || 'Error');
+  } catch (err){ alert(err.message); }
+}
+</script>
+</body>
+</html>

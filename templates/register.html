@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Register — Phishing Detector</title>
+<style>
+  /* simplified styles same tech-blue look */
+  body{background:linear-gradient(120deg,#071029,#0f2138);font-family:Poppins,Inter,system-ui;color:#e8f7ff;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;}
+  .card{width:420px;padding:26px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));box-shadow:0 24px 60px rgba(2,6,23,0.6);border:1px solid rgba(95,224,255,0.06);}
+  input{width:94%;padding:12px;margin:8px 0;border-radius:10px;border:none;background:rgba(255,255,255,0.03);color:#e8f7ff;outline:none;text-align:left;}
+  .btn{width:96%;padding:12px;border-radius:999px;background:linear-gradient(90deg,#00c3ff,#5fe0ff);border:none;color:#022;font-weight:700;cursor:pointer;}
+  .meter{height:8px;border-radius:6px;background:rgba(255,255,255,0.06);overflow:hidden;margin-top:6px;}
+  .meter > i{display:block;height:100%;width:0%;background:linear-gradient(90deg,#ff8a00,#00ffcc);transition:width .25s;}
+  small{color:rgba(255,255,255,0.7);}
+  .captcha{display:flex;gap:10px;align-items:center;margin-top:6px;}
+</style>
+</head>
+<body>
+<div class="card">
+  <h2>Create account</h2>
+  <p style="color:rgba(255,255,255,0.75);margin:0 0 10px 0;">Start scanning URLs — secure your browsing history.</p>
+
+  <form id="regForm" action="/do_register" method="post" autocomplete="on">
+    <input type="text" name="username" placeholder="Choose a username" required minlength="3" />
+    <input type="email" name="email" placeholder="Email (optional, recommended for recovery)" />
+    <input id="pass" type="password" name="password" placeholder="Choose a strong password" required minlength="6" />
+    <div class="meter"><i id="meterBar"></i></div>
+    <small id="passFeedback">Password strength: —</small>
+
+    <div class="captcha">
+      <label style="color:rgba(255,255,255,0.8)">{{ captcha_question }}</label>
+      <input type="text" name="captcha" placeholder="Answer" required style="width:40%;padding:8px"/>
+    </div>
+
+    <button type="submit" class="btn">Register</button>
+  </form>
+
+  <p style="margin-top:12px;color:rgba(255,255,255,0.7)">Already registered? <a href="/" style="color:#5fe0ff;">Sign in</a></p>
+</div>
+
+<script>
+  // password strength meter (very simple)
+  const pass = document.getElementById('pass');
+  const meter = document.getElementById('meterBar');
+  const feedback = document.getElementById('passFeedback');
+
+  pass.addEventListener('input', () => {
+    const s = scorePassword(pass.value);
+    meter.style.width = Math.min(100, s*20) + '%';
+    if (s < 2) {
+      feedback.textContent = 'Password strength: Weak';
+    } else if (s < 4) {
+      feedback.textContent = 'Password strength: Fair';
+    } else {
+      feedback.textContent = 'Password strength: Strong';
+    }
+  });
+
+  function scorePassword(p) {
+    let score = 0;
+    if (!p) return 0;
+    if (p.length >= 8) score++;
+    if (p.length >= 12) score++;
+    if (/[A-Z]/.test(p)) score++;
+    if (/[0-9]/.test(p)) score++;
+    if (/[^A-Za-z0-9]/.test(p)) score++;
+    return score;
+  }
+
+  // extra frontend validation
+  const form = document.getElementById('regForm');
+  form.addEventListener('submit', (e) => {
+    if (pass.value.length < 6) {
+      alert('Password must be at least 6 characters');
+      e.preventDefault();
+    }
+  });
+</script>
+</body>
+</html>

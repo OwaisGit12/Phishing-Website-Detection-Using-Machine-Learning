@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Phishing Detector — Dashboard</title>
+
+<style>
+:root{
+  --accent:#00c3ff;
+  --accent2:#5fe0ff;
+  --danger:#ff5454;
+  --text:#e8f7ff;
+}
+
+/* Base */
+html,body{
+  height:100%;
+  margin:0;
+  padding:0;
+  font-family:Poppins,Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+  font-size:17px;
+  color:var(--text);
+  scroll-behavior:smooth;
+  background:linear-gradient(180deg,#030617,#071a2a); /* fallback if image fails */
+}
+
+/* ---------- Parallax background layer (A2) ---------- */
+/* This sits behind everything and moves on scroll for parallax effect */
+.parallax{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  background:
+    linear-gradient(rgba(2,6,12,0.55), rgba(2,6,12,0.55)), /* B1 dark overlay */
+    url("{{ url_for('static', filename='images/cyber-bg.jpg') }}") center top / cover no-repeat fixed;
+  /* If you aren't using Flask/Jinja, use this fallback (uncomment and edit path):
+     background:
+       linear-gradient(rgba(2,6,12,0.55), rgba(2,6,12,0.55)),
+       url('/static/images/cyber-bg.jpg') center top / cover no-repeat fixed;
+  */
+  will-change: transform;
+  transform: translateY(0px);
+}
+
+/* subtle additional radial highlights (keeps previous look) */
+.parallax:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(0,195,255,0.04), transparent 18%),
+    radial-gradient(circle at 80% 90%, rgba(95,224,255,0.03), transparent 16%);
+  pointer-events:none;
+  z-index:0;
+}
+
+/* NAVBAR */
+nav{
+  position:fixed;
+  top:0; left:0; right:0;
+  padding:14px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  backdrop-filter:blur(8px) saturate(1.05);
+  background:rgba(0,0,0,0.32);
+  z-index:30;
+}
+nav .brand{ font-weight:700; font-size:20px; }
+nav a{
+  color:#bff3ff;
+  margin-left:18px;
+  text-decoration:none;
+  font-weight:600;
+}
+nav a:hover{ color:#fff; }
+
+/* Sections (single-page scroll style) */
+section{
+  padding:110px 10%;
+  min-height:90vh;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.7s ease;
+  line-height:1.7;
+  position:relative;
+  z-index:5;
+}
+section.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* Headings */
+h1{ font-size:40px; margin:0 0 12px 0; }
+h2{ font-size:34px; margin:0 0 12px 0; }
+h3{ font-size:26px; }
+
+/* Scanner Box (kept from your original design) */
+.scanner-box{
+  background:rgba(255,255,255,0.04);
+  padding:28px;
+  border-radius:15px;
+  border:1px solid rgba(95,224,255,0.08);
+  max-width:760px;
+  margin:auto;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+}
+input[type="text"], input[type="email"], textarea{
+  width:100%;
+  padding:16px;
+  border-radius:10px;
+  border:none;
+  background:rgba(255,255,255,0.06);
+  color:var(--text);
+  font-size:17px;
+  outline:none;
+}
+textarea{ resize:none; }
+
+.clear-btn-x{
+  position:absolute;
+  right:12px;
+  top:50%;
+  transform:translateY(-50%);
+  cursor:pointer;
+  color:var(--accent2);
+  font-size:20px;
+}
+
+/* Buttons */
+.scan-btn{
+  width:100%;
+  padding:14px;
+  margin-top:12px;
+  border-radius:10px;
+  border:none;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));
+  color:#022;
+  font-weight:700;
+  font-size:17px;
+  cursor:pointer;
+}
+.send-btn{
+  width:100%;
+  padding:14px;
+  background:linear-gradient(90deg,#0099ff,#33ddff);
+  border:none;
+  border-radius:10px;
+  font-size:17px;
+  margin-top:12px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* Progress */
+.progress{
+  height:8px;
+  background:rgba(255,255,255,0.07);
+  border-radius:6px;
+  margin-top:12px;
+  display:none;
+  overflow:hidden;
+}
+.bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#00ffd0,#00c3ff);
+  transition:width .3s;
+}
+
+/* Results */
+.result{
+  margin-top:20px;
+  padding:20px;
+  border-radius:12px;
+  font-size:18px;
+  display:block;
+}
+.safe{
+  background:rgba(46,204,113,0.12);
+  border:1px solid rgba(46,204,113,0.28);
+}
+.phishing{
+  background:rgba(231,76,60,0.12);
+  border:1px solid rgba(231,76,60,0.28);
+}
+
+/* Animations reused */
+.result-anim{ animation:popIn .6s ease forwards; }
+@keyframes popIn{
+  0%{transform:scale(.6);opacity:0}
+  60%{transform:scale(1.05);opacity:1}
+  100%{transform:scale(1)}
+}
+@keyframes pulseSkull{ 0%{transform:scale(1);opacity:.8}50%{transform:scale(1.3);opacity:1}100%{transform:scale(1);opacity:.8} }
+@keyframes pulseTick{ 0%{transform:scale(1);opacity:.8}50%{transform:scale(1.3);opacity:1}100%{transform:scale(1);opacity:.8} }
+
+/* History */
+.history-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px;
+  border-radius:12px;
+  background:rgba(255,255,255,0.04);
+  margin-bottom:10px;
+  font-size:17px;
+}
+.del-btn{
+  background:var(--danger);
+  border:none;
+  padding:9px 14px;
+  border-radius:8px;
+  color:white;
+  cursor:pointer;
+  font-size:15px;
+}
+.clear-all{
+  margin-top:10px;
+  background:#ff8a8a;
+  border:none;
+  padding:12px 18px;
+  border-radius:10px;
+  color:white;
+  cursor:pointer;
+  font-size:16px;
+}
+
+/* Contact box */
+.contact-box{
+  background:rgba(255,255,255,0.05);
+  padding:25px;
+  border-radius:15px;
+  border:1px solid rgba(95,224,255,0.08);
+  max-width:640px;
+  margin:auto;
+}
+
+/* Popup */
+#popup{ position:fixed; inset:0; display:none; place-items:center; background:rgba(0,0,0,0.6); z-index:60; }
+.popup-box{ background:#061224; padding:25px; border-radius:12px; width:360px; text-align:center; border:1px solid #00c3ff; font-size:17px; }
+
+/* Responsive tweaks */
+@media (max-width:900px){
+  h1{ font-size:32px; }
+  nav{ padding:12px 6%; }
+  section{ padding:90px 6%; }
+  .parallax{ background-attachment: scroll; } /* fixed/attachment causes issues on mobile */
+}
+</style>
+</head>
+<body>
+
+<!-- Parallax background -->
+<div class="parallax" aria-hidden="true"></div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="brand">Phishing Detector</div>
+  <div>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#faq">FAQs</a>
+    <a href="#contact">Contact</a>
+    <a href="#profile">Profile</a>
+    <a href="/logout" style="color:#ff8080">Logout</a>
+  </div>
+</nav>
+
+<!-- HOME -->
+<section id="home">
+  <h1>Protect Yourself from Phishing Attacks</h1>
+
+  <p style="max-width:900px;color:rgba(255,255,255,0.88);">
+    Phishing is a common cyber threat. Attackers create fake sites to steal credentials, OTPs, and personal data.
+    Our ML-powered Phishing Detector analyzes URLs and gives instant risk feedback so you can stay safe online.
+  </p>
+
+  <div class="scanner-box">
+    <div style="position:relative;">
+      <input id="urlInput" type="text" placeholder="Enter URL to scan…" />
+      <span class="clear-btn-x" onclick="document.getElementById('urlInput').value=''">✖</span>
+    </div>
+
+    <button class="scan-btn" id="scanBtn">Scan</button>
+
+    <div class="progress" id="prog"><div class="bar" id="bar"></div></div>
+
+    <div id="resultWrap"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="padding: 60px 20px;">
+  <div class="home-content">
+    <h1 class="section-title">About the Tool</h1>
+    <p class="about-text">
+      The **Phishing Website Detection System** is an intelligent web-based application designed to identify and classify malicious websites using advanced Machine Learning algorithms. 
+      With the rapid growth of online transactions and digital services, phishing attacks have become one of the most common cybersecurity threats faced by users. 
+      Our system analyzes multiple website parameters including URL structure, domain characteristics, security certificates, suspicious link patterns, and webpage behavior to accurately determine whether a site is legitimate or harmful.
+    </p>
+
+    <p class="about-text">
+      This project integrates several ML models such as Random Forest, SVM, Decision Tree, Logistic Regression, and XGBoost. 
+      To enhance performance further, we are also implementing hybrid ensemble techniques and stacking models to achieve higher prediction accuracy. 
+      The system is capable of learning from real-time datasets, which helps it adapt to modern phishing techniques that evolve constantly.
+    </p>
+
+    <p class="about-text">
+      The platform provides users with a simple interface where they can submit any website URL and instantly receive a detailed analysis report. 
+      This ensures that users — whether students, professionals, or general internet users — can stay protected from fraudulent websites designed to steal personal information. 
+      Our main objective is to promote digital safety and raise awareness about cybersecurity by offering a practical, user-friendly, and reliable solution.
+    </p>
+
+    <p class="about-text">
+      Additionally, the project serves as a learning opportunity for understanding supervised machine learning pipelines, dataset preprocessing, feature engineering, model evaluation, 
+      and Flask-based deployment. It is a complete end-to-end machine learning solution that demonstrates real-world application of classification algorithms.
+    </p>
+  </div>
+</section>
+
+
+<!-- FAQ -->
+<section id="faq">
+  <h2>FAQs</h2>
+
+  <details class="faq"><summary>What is phishing?</summary>
+    <p>Phishing is an attack where attackers impersonate trusted entities to steal personal info or credentials.</p>
+  </details>
+
+  <details class="faq"><summary>How does this detector work?</summary>
+    <p>It analyzes URL features and runs ML models trained on phishing/legitimate examples to predict risk.</p>
+  </details>
+
+  <details class="faq"><summary>Is it 100% accurate?</summary>
+    <p>No tool is perfect, but this reduces risk considerably. Always double-check suspicious sites.</p>
+  </details>
+
+  <details class="faq"><summary>Can I clear my history?</summary>
+    <p>Yes — the Profile section has a 'Clear All' button to erase your saved scans.</p>
+  </details>
+
+  <details class="faq"><summary>How is my data handled?</summary>
+    <p>Your data is stored securely and used only for improving the service. We do not share it with third parties.</p>
+  </details>
+  <details class="faq-box">
+      <summary>Why do phishing websites exist?</summary>
+      <p>
+        Phishing websites are created by attackers to steal personal and financial information by tricking users into believing the website is legitimate.
+      </p>
+    </details>
+
+    <details class="faq-box">
+      <summary>How accurate is this phishing detection system?</summary>
+      <p>
+        With machine learning models like Random Forest, SVM, and XGBoost, and ensemble techniques, the accuracy can go above 95%.
+      </p>
+    </details>
+
+    <details class="faq-box">
+      <summary>What features does the model analyze?</summary>
+      <p>
+        The system evaluates URL length, HTTPS certificate validity, redirection count, domain age, suspicious symbols, scripts, and other behavior patterns.
+      </p>
+    </details>
+
+    <details class="faq-box">
+      <summary>Can this system detect newly created phishing sites?</summary>
+      <p>
+        Yes. Even new phishing sites can be detected using heuristic patterns and ML-based behavioral predictions.
+      </p>
+    </details>
+
+    <details class="faq-box">
+      <summary>Is this tool only for students?</summary>
+      <p>
+        No. This tool can be used by students, professionals, teachers, and general internet users to stay safe online.
+      </p>
+    </details>
+
+    <details class="faq-box">
+      <summary>Does the tool store user-entered URLs?</summary>
+      <p>
+        No. The system does not save any URLs entered for scanning, ensuring full privacy for all users.
+      </p>
+    </details>
+  </section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p style="max-width:700px;color:rgba(255,255,255,0.86);">
+    Found a false positive or have suggestions? Send us a message.
+  </p>
+
+  <div class="contact-box">
+    <input type="text" id="cName" placeholder="Your Name" />
+    <input type="email" id="cEmail" placeholder="Your Email" style="margin-top:12px;" />
+    <textarea id="cMsg" placeholder="Write your message..." rows="5" style="margin-top:12px;"></textarea>
+    <button class="send-btn" onclick="sendMessage()">Send Message</button>
+    <p id="cStatus" style="margin-top:8px;color:#5fe0ff;"></p>
+  </div>
+</section>
+
+<!-- PROFILE -->
+<section id="profile">
+  <h2>Your Profile</h2>
+  <p>Logged in as <strong>{{ session["user"] }}</strong></p>
+
+  <h3>Scan History</h3>
+  <div id="history">
+    {% if scans %}
+      {% for s in scans %}
+      <div class="history-item" data-id="{{ s.id }}">
+        <div>
+          <strong>{{ s.url }}</strong><br>
+          <small>{{ s.timestamp }} • {{ s.result }}</small>
+        </div>
+        <button class="del-btn" onclick="deleteScan('{{ s.id }}')">Delete</button>
+      </div>
+      {% endfor %}
+    {% else %}
+      <p style="opacity:0.7;">No scans yet.</p>
+    {% endif %}
+  </div>
+
+  <button class="clear-all" onclick="clearAll()">Clear All</button>
+</section>
+
+<!-- FOOTER -->
+<footer style="text-align:center;padding:20px;color:rgba(255,255,255,0.6);font-size:16px;z-index:5;">
+  © 2025 Phishing Detector — Stay Safe Online
+</footer>
+
+<!-- POPUP -->
+<div id="popup">
+  <div class="popup-box">
+    <h3>Open External Site?</h3>
+    <p id="popupUrl" style="color:#5fe0ff"></p>
+    <button class="scan-btn" id="confirmOpen">Open</button>
+    <button class="del-btn" id="cancelOpen" style="margin-left:8px;">Cancel</button>
+  </div>
+</div>
+
+<script>
+/* ---------- Fade-in sections ---------- */
+const sections = document.querySelectorAll("section");
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(en => {
+    if(en.isIntersecting) en.target.classList.add("visible");
+  });
+},{ threshold: 0.15 });
+sections.forEach(s => io.observe(s));
+
+/* ---------- Parallax movement (A2) ---------- */
+const parallax = document.querySelector('.parallax');
+window.addEventListener('scroll', () => {
+  // translateY by a small fraction of scroll for subtle parallax
+  const y = window.scrollY * -0.08; 
+  parallax.style.transform = `translateY(${y}px)`;
+});
+
+/* ---------- Progress bar helpers ---------- */
+function showProgress(){
+  document.getElementById("prog").style.display = "block";
+  const bar = document.getElementById("bar");
+  bar.style.width = "20%";
+  setTimeout(()=> bar.style.width = "60%", 400);
+  setTimeout(()=> bar.style.width = "95%", 900);
+}
+function finishProgress(){
+  const bar = document.getElementById("bar");
+  bar.style.width = "100%";
+  setTimeout(()=>{
+    document.getElementById("prog").style.display = "none";
+    bar.style.width = "0%";
+  },300);
+}
+
+/* ---------- Scan button ---------- */
+document.getElementById("scanBtn").addEventListener("click", async () => {
+  const url = document.getElementById("urlInput").value.trim();
+  if(!url) return alert("Enter a URL first");
+
+  showProgress();
+  try{
+    const res = await fetch("/predict", {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({ url })
+    });
+    const data = await res.json();
+    finishProgress();
+
+    const wrap = document.getElementById("resultWrap");
+    if(data.label === "Phishing"){
+      wrap.innerHTML = `
+        <div class="result phishing result-anim">
+          <div style="font-size:50px;animation:pulseSkull 1.5s infinite;">💀</div>
+          <h3>⚠️ Dangerous Website</h3>
+          ${data.prediction_text}<br><br>
+          <button class="scan-btn" onclick="askOpen('${encodeURI(url)}')">Proceed Anyway</button>
+        </div>`;
+    } else {
+      wrap.innerHTML = `
+        <div class="result safe result-anim">
+          <div style="font-size:50px;animation:pulseTick 1.5s infinite;">🟢✔️</div>
+          <h3>Safe Website</h3>
+          ${data.prediction_text}<br><br>
+          <button class="scan-btn" onclick="askOpen('${encodeURI(url)}')">Visit Site</button>
+        </div>`;
+    }
+  }catch(err){
+    finishProgress();
+    alert("Error scanning URL. Try again.");
+    console.error(err);
+  }
+});
+
+/* ---------- Open URL with confirmation ---------- */
+let pendingUrl = "";
+function askOpen(u){
+  pendingUrl = decodeURI(u);
+  document.getElementById("popupUrl").innerText = pendingUrl.startsWith("http") ? pendingUrl : "https://" + pendingUrl;
+  document.getElementById("popup").style.display = "grid";
+}
+document.getElementById("cancelOpen").onclick = ()=> document.getElementById("popup").style.display = "none";
+document.getElementById("confirmOpen").onclick = ()=> {
+  let u = pendingUrl;
+  if(!u.startsWith("http")) u = "https://" + u;
+  window.open(u, "_blank");
+  document.getElementById("popup").style.display = "none";
+};
+
+/* ---------- Delete scan ---------- */
+async function deleteScan(id){
+  if(!confirm("Delete this entry?")) return;
+  try{
+    const res = await fetch("/delete_scan", {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({ scan_id: id })
+    });
+    const data = await res.json();
+    if(data.ok) document.querySelector(`[data-id="${id}"]`).remove();
+  }catch(err){
+    console.error(err);
+    alert("Failed to delete.");
+  }
+}
+
+/* ---------- Clear all ---------- */
+async function clearAll(){
+  if(!confirm("Clear entire history?")) return;
+  try{
+    const res = await fetch("/clear_scans", { method: "POST" });
+    const data = await res.json();
+    if(data.ok) document.getElementById("history").innerHTML = `<p style="opacity:.7">No scans yet.</p>`;
+  }catch(err){
+    console.error(err);
+    alert("Failed to clear.");
+  }
+}
+
+/* ---------- Contact form ---------- */
+async function sendMessage(){
+  const name = document.getElementById("cName").value.trim();
+  const email = document.getElementById("cEmail").value.trim();
+  const msg = document.getElementById("cMsg").value.trim();
+  const status = document.getElementById("cStatus");
+
+  if(!name || !email || !msg){
+    status.innerText = "Please fill all fields.";
+    return;
+  }
+
+  status.innerText = "Sending...";
+
+  try{
+    const res = await fetch("/contact", {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({ name, email, msg })
+    });
+    const data = await res.json();
+    if(data.ok){
+      status.innerText = "Message sent ✔️";
+      document.getElementById("cName").value = "";
+      document.getElementById("cEmail").value = "";
+      document.getElementById("cMsg").value = "";
+    } else {
+      status.innerText = "Failed to send ❌";
+    }
+  }catch(err){
+    console.error(err);
+    status.innerText = "Failed to send ❌";
+  }
+}
+</script>
+</body>
+</html>
